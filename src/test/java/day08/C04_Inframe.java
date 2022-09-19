@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class C04_Inframe {
 
@@ -26,7 +28,7 @@ public class C04_Inframe {
 
     @After
     public void tearDown() {
-        driver.close();
+        // driver.close();
     }
 
     @Test
@@ -34,10 +36,21 @@ public class C04_Inframe {
         // https://html.com/tags/iframe/ adresine gidelim
         driver.get("https://html.com/tags/iframe/");
 
+        /*
+        Bir web sitesinde bir video(youtube vs) varsa <iframe> tag'i içerisindeyse bu video'yu direkt locate edip çalıştırmak dinamik olmaz.
+        Çünkü link değişebilir ve locate'imiz çalışmaz.
+        Bunun için bütün frame'leri bir array liste atıp index ile frame'i seçip sonrasında play tuşunu locate edip çalıştırabiliriz.
+        */
+
         // Youtube videosunu çalıştıralım
-        WebElement youTubeFrame=driver.findElement(By.xpath("//iframe[@src='https://www.youtube.com/embed/owsfdh4gxyc']"));
-        driver.switchTo().frame(youTubeFrame);
+        List<WebElement> iframeList=new ArrayList<>(driver.findElements(By.xpath("//iframe")));
+        driver.switchTo().frame(iframeList.get(0));
         driver.findElement(By.xpath("//*[@aria-label='Oynat']")).click();
+
+
+       /* WebElement youTubeFrame=driver.findElement(By.xpath("//iframe[@src='https://www.youtube.com/embed/owsfdh4gxyc']"));
+        driver.switchTo().frame(youTubeFrame);
+        driver.findElement(By.xpath("//*[@aria-label='Oynat']")).click();*/
 
     }
 }
