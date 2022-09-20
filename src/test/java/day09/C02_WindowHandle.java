@@ -39,8 +39,15 @@ public class C02_WindowHandle {
 
         String amazonWindowHandle = driver.getWindowHandle();
 
+        /*
+        Eğer bize verilen task'te sayfalar arası geçişler varsa her driver.get() methodundan sonra
+        driver'in window handle değerini String bir değişkene atarız.
+        Sonrasında farklı bir sayfaya ya da sekmeye gittikten sonra tekrar ilk sayfaya dönmemiz istenirse
+        String değişkene atadığımız window handle değerleriyle sayfalar arası geçiş yapılabilir
+         */
+
         //3- Yeni bir pencere açıp bestbuy anasayfasına gidelim.(https://www.bestbuy.com)
-        driver.switchTo().newWindow(WindowType.WINDOW);
+        driver.switchTo().newWindow(WindowType.WINDOW); // yeni bir pencere açmak için bu methodu kullanırız
         driver.get("https://bestbuy.com");
 
         //4- title'in BestBuy içerdiğini test edelim
@@ -50,7 +57,7 @@ public class C02_WindowHandle {
         String bestBuyWindowHandle = driver.getWindowHandle();
 
         //5- İlk sayfaya dönüp sayfada java aratalım
-        driver.switchTo().window(amazonWindowHandle);
+        driver.switchTo().window(amazonWindowHandle); // sayfalar arası geçiş için kullanılır
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys("java" + Keys.ENTER);
 
         //6- Arama sonuclarının java içerdiğini test edelim
