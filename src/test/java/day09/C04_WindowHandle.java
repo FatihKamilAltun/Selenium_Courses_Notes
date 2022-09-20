@@ -50,6 +50,15 @@ public class C04_WindowHandle {
         List<String> windowList=new ArrayList<>(driver.getWindowHandles()); // window handle değerleri
         driver.switchTo().window(windowList.get(1));
 
+        /*
+        Bir websitesine gittiğimizde bir webelementine tıkladığımızda yeni bir sekme ya da pencere açılırsa
+        bu yeni açılan sekmenin veya pencerenin handle değerini buulabilmek için driver.getwindowhandles() methodunu
+        bir ArrayList'e atıp bütün sayfaların listesine ulaşabiliriz
+        İlk açtığım pencerenin index'i 0'dır.
+        İkinci açılan sekmenin index'i 1'dir. Ve ikinci açılan pencerede ya da sekmede işlem yapabilmek için
+        driver.switchTo().window(listadi.get(index)) methodunu kullanabiliriz
+         */
+
                                                                                                     /*
                                                                                                     Set<String> windowHandleseti= driver.getWindowHandles();
                                                                                                     System.out.println(windowHandleseti);
