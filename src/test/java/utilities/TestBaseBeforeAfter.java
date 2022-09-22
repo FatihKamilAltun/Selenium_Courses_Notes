@@ -23,7 +23,7 @@ public abstract class TestBaseBeforeAfter {
         actions=new Actions(driver);
         faker=new Faker();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @After
